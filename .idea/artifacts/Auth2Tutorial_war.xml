@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Auth2Tutorial:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Auth2Tutorial</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Auth2Tutorial-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Auth2Tutorial:war exploded" />
+    </root>
+  </artifact>
+</component>
