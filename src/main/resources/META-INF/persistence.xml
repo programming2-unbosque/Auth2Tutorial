@@ -7,6 +7,8 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/PostgresDS</jta-data-source>
         <class>edu.unbosque.Auth2Tutorial.jpa.entities.UserApp</class>
+        <class>edu.unbosque.Auth2Tutorial.jpa.entities.Owner</class>
+        <class>edu.unbosque.Auth2Tutorial.jpa.entities.Official</class>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect" />

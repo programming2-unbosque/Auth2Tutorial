@@ -1,13 +1,11 @@
 package edu.unbosque.Auth2Tutorial.jpa.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "UserApp")
-public class UserApp {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class UserApp {
 
     @Id
     @Column(name = "username")

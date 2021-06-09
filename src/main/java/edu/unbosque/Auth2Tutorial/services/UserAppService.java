@@ -3,7 +3,6 @@ package edu.unbosque.Auth2Tutorial.services;
 import edu.unbosque.Auth2Tutorial.jpa.entities.UserApp;
 import edu.unbosque.Auth2Tutorial.jpa.repositories.UserAppRepository;
 import edu.unbosque.Auth2Tutorial.jpa.repositories.UserAppRepositoryImpl;
-import edu.unbosque.Auth2Tutorial.resources.pojos.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -37,30 +36,6 @@ public class UserAppService {
         }
 
         return Optional.empty();
-
-    }
-
-    public Optional<User> createUser(User user) {
-
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        userAppRepository = new UserAppRepositoryImpl(entityManager);
-
-        UserApp userApp = new UserApp(user.getUsername(), user.getPassword(), user.getEmail(), user.getRole());
-        Optional<UserApp> persistedUserApp = userAppRepository.save(userApp);
-
-        entityManager.close();
-        entityManagerFactory.close();
-
-        if (persistedUserApp.isPresent()) {
-            return Optional.of(new User(persistedUserApp.get().getUsername(),
-                    persistedUserApp.get().getPassword(),
-                    persistedUserApp.get().getEmail(),
-                    persistedUserApp.get().getRole()));
-        } else {
-            return Optional.empty();
-        }
 
     }
 

@@ -1,8 +1,8 @@
 package edu.unbosque.Auth2Tutorial.resources;
 
 import edu.unbosque.Auth2Tutorial.resources.filters.Logged;
-import edu.unbosque.Auth2Tutorial.resources.pojos.User;
-import edu.unbosque.Auth2Tutorial.services.UserAppService;
+import edu.unbosque.Auth2Tutorial.resources.pojos.OwnerPOJO;
+import edu.unbosque.Auth2Tutorial.services.OwnerService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -15,22 +15,19 @@ public class OwnerResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create(User user) {
+    public Response create(OwnerPOJO owner) {
 
-        user.setRole("owner");
+        Optional<OwnerPOJO> persistedOwner = new OwnerService().createOwner(owner);
 
-        Optional<User> persistedUser = new UserAppService().createUser(user);
-
-        if (persistedUser.isPresent()) {
+        if (persistedOwner.isPresent()) {
             return Response.status(Response.Status.CREATED)
-                    .entity(persistedUser.get())
+                    .entity(persistedOwner.get())
                     .build();
         } else {
             return Response.serverError()
                     .entity("Owner user could not be created")
                     .build();
         }
-
 
     }
 
